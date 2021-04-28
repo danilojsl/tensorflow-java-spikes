@@ -14,13 +14,13 @@ import java.nio.FloatBuffer;
 
 public class TensorValues {
 
-    public static float[] castToPrimitiveFloat(Tensor<TFloat32> tensor) {
+    public static float[] castToPrimitiveFloat(TFloat32 tensor) {
         FloatBuffer foreignBuffer = ByteBuffer.allocate((int) tensor.numBytes())
                 .order(ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN
                         ? ByteOrder.BIG_ENDIAN
                         : ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
 
-        tensor.rawData().asFloats().copyTo(DataBuffers.of(foreignBuffer), foreignBuffer.capacity());
+        tensor.asRawTensor().data().asFloats().copyTo(DataBuffers.of(foreignBuffer), foreignBuffer.capacity());
         float[] rawValues = new float[foreignBuffer.remaining()];
         foreignBuffer.get(rawValues);
         foreignBuffer.clear();
@@ -28,11 +28,25 @@ public class TensorValues {
         return rawValues;
     }
 
-    public static Tensor<TFloat32> initializeTruncatedNormalTensor(Operand<TInt32> shape, Scope scope) {
-        TruncatedNormal.seed(1000L);
-        TruncatedNormal<TFloat32> truncatedNormal = TruncatedNormal.create(scope, shape, TFloat32.DTYPE);
-
-        return truncatedNormal.asTensor();
-    }
+//    public static float[] castToPrimitiveFloat(Tensor<TFloat32> tensor) {
+//        FloatBuffer foreignBuffer = ByteBuffer.allocate((int) tensor.numBytes())
+//                .order(ByteOrder.nativeOrder() == ByteOrder.LITTLE_ENDIAN
+//                        ? ByteOrder.BIG_ENDIAN
+//                        : ByteOrder.LITTLE_ENDIAN).asFloatBuffer();
+//
+//        tensor.rawData().asFloats().copyTo(DataBuffers.of(foreignBuffer), foreignBuffer.capacity());
+//        float[] rawValues = new float[foreignBuffer.remaining()];
+//        foreignBuffer.get(rawValues);
+//        foreignBuffer.clear();
+//
+//        return rawValues;
+//    }
+//
+//    public static Tensor<TFloat32> initializeTruncatedNormalTensor(Operand<TInt32> shape, Scope scope) {
+//        TruncatedNormal.seed(1000L);
+//        TruncatedNormal<TFloat32> truncatedNormal = TruncatedNormal.create(scope, shape, TFloat32.DTYPE);
+//
+//        return truncatedNormal.asTensor();
+//    }
 
 }

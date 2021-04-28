@@ -15,7 +15,7 @@ import java.util.Arrays;
 
 public class LSTMSpike {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         String libraryPath = System.getProperty("java.library.path");
         System.out.println(libraryPath);
         EagerSession session = EagerSession.create();
@@ -73,6 +73,6 @@ public class LSTMSpike {
     private static Operand<TFloat32> getWeightMatrix(Operand<TInt32> shape, Scope scope) {
         Tensor<TFloat32> tensorWeight = TensorValues.initializeTruncatedNormalTensor(shape, scope);
         return Constant.create(scope, tensorWeight);
-    }
+    }*/
 
 }

@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class TensorSpike {
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
 
         float[] floats = {1f, 2f, 3f};
 
@@ -33,6 +33,6 @@ public class TensorSpike {
 
         System.out.println(Arrays.toString(result));
 
-    }
+    }*/
 
 }
